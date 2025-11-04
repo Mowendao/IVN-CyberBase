@@ -5,7 +5,7 @@
       <div class="header-content">
         <div class="logo" @click="$router.push('/')">
           <span class="logo-icon">🛡️</span>
-          <h1>IVN CTF军火库</h1>
+          <h2>IVN CTF军火库</h2>
         </div>
 
         <!-- 移动端菜单按钮 -->
@@ -81,7 +81,7 @@ const mobileMenuVisible = ref(false)
 
 // 检查是否为移动设备
 const checkIsMobile = () => {
-  isMobile.value = window.innerWidth <= 768
+  isMobile.value = window.innerWidth <= 1072
   if (!isMobile.value) {
     mobileMenuVisible.value = false
   }
@@ -191,7 +191,7 @@ onBeforeUnmount(() => {
 }
 
 /* 响应式设计 */
-@media (max-width: 768px) {
+@media (max-width: 1072px) {
   .header-content {
     position: relative;
     flex-direction: row;
