@@ -331,22 +331,22 @@ const questionTypes = ref([
   margin: 5px 0;
 }
 
-/* 响应式设计 */
+/* 在 HomeView.vue 的 <style scoped> 中添加 */
 @media (max-width: 768px) {
-  .ctf-intro {
-    padding: 15px;
+  .el-table {
+    font-size: 12px;
   }
 
-  .page-title {
-    font-size: 1.5em;
+  :deep(.el-table__cell) {
+    padding: 8px 0;
   }
 
-  .section-title {
-    font-size: 1.3em;
+  :deep(.el-step__title) {
+    font-size: 14px;
   }
 
-  .mode-comparison {
-    margin: 20px 0;
+  :deep(.el-step__description) {
+    font-size: 12px;
   }
 }
 </style>

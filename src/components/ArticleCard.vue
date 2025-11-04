@@ -93,4 +93,23 @@ const goToArticle = () => {
   font-size: 14px;
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+  .article-card {
+    padding: 10px;
+  }
+
+  .card-title {
+    font-size: 15px;
+  }
+
+  .card-description {
+    font-size: 13px;
+  }
+
+  .card-link {
+    padding: 6px 16px;
+    font-size: 13px;
+  }
+}
 </style>

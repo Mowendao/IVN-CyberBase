@@ -175,14 +175,33 @@ const handleClear = () => {
   margin-top: 40px;
 }
 
+/* 在所有页面的 <style scoped> 中添加 */
 @media (max-width: 768px) {
-  .community-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  /* 平板和手机 */
+  .page-header {
+    margin-bottom: 20px;
+    padding: 10px 0;
   }
 
-  .community-page {
-    padding: 15px;
+  .page-title {
+    font-size: 1.5rem;
+    padding: 0.3rem;
+  }
+
+  .page-description {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* 手机 */
+  .page-title {
+    font-size: 1.3rem;
+  }
+
+  .page-description {
+    font-size: 0.9rem;
   }
 }
 </style>

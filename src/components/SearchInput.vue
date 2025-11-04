@@ -72,4 +72,11 @@ const handleClear = () => {
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
+@media (max-width: 768px) {
+  .search-input :deep(.el-input__wrapper) {
+    border-radius: 16px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  }
+}
 </style>

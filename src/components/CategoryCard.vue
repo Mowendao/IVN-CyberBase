@@ -91,4 +91,23 @@ const goToResource = () => {
   background: linear-gradient(135deg, #3a55ce 0%, #d03333 100%);
   border: none;
 }
+
+@media (max-width: 768px) {
+  .article-card {
+    padding: 10px;
+  }
+
+  .card-title {
+    font-size: 15px;
+  }
+
+  .card-description {
+    font-size: 13px;
+  }
+
+  .card-link {
+    padding: 6px 16px;
+    font-size: 13px;
+  }
+}
 </style>

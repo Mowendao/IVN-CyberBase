@@ -8,8 +8,23 @@
           <h1>IVN CTF军火库</h1>
         </div>
 
+        <!-- 移动端菜单按钮 -->
+        <el-button
+          class="mobile-menu-button"
+          @click="mobileMenuVisible = !mobileMenuVisible"
+          circle
+          plain
+          :icon="mobileMenuVisible ? 'Close' : 'Menu'"
+        />
+
         <!-- 主导航菜单 -->
-        <el-menu mode="horizontal" router :default-active="$route.path" class="main-menu">
+        <el-menu
+          mode="horizontal"
+          router
+          :default-active="$route.path"
+          class="main-menu"
+          :class="{ 'mobile-menu': isMobile && mobileMenuVisible }"
+        >
           <el-menu-item index="/home">首页</el-menu-item>
           <el-menu-item index="/knowledge">知识库</el-menu-item>
           <el-menu-item index="/competition">赛事中心</el-menu-item>
@@ -47,7 +62,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 // 分类数据
 const categories = ref([
@@ -59,6 +74,28 @@ const categories = ref([
   { id: 'awd', name: 'AWD' },
   { id: 'universality', name: '通用' },
 ])
+
+// 移动端菜单相关
+const isMobile = ref(false)
+const mobileMenuVisible = ref(false)
+
+// 检查是否为移动设备
+const checkIsMobile = () => {
+  isMobile.value = window.innerWidth <= 768
+  if (!isMobile.value) {
+    mobileMenuVisible.value = false
+  }
+}
+
+// 监听窗口大小变化
+onMounted(() => {
+  checkIsMobile()
+  window.addEventListener('resize', checkIsMobile)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkIsMobile)
+})
 </script>
 
 <style scoped>
@@ -99,6 +136,13 @@ const categories = ref([
   margin: 0;
   font-size: 24px;
   font-weight: 600;
+}
+
+.mobile-menu-button {
+  display: none;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  color: white !important;
 }
 
 .main-menu {
@@ -149,24 +193,56 @@ const categories = ref([
 /* 响应式设计 */
 @media (max-width: 768px) {
   .header-content {
-    flex-direction: column;
+    position: relative;
+    flex-direction: row;
     height: auto;
-    padding: 10px;
+    padding: 10px 20px;
   }
 
   .logo h1 {
     font-size: 20px;
   }
 
-  .search-box {
-    width: 100%;
-    margin-top: 10px;
+  .mobile-menu-button {
+    display: block;
+    z-index: 1001;
+  }
+
+  .main-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    background: linear-gradient(135deg, #3a55ce 0%, #d03333 100%);
+    flex-direction: column;
+    padding: 10px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    min-width: 200px;
+    border-radius: 4px;
+  }
+
+  .main-menu.mobile-menu {
+    display: flex;
   }
 
   .main-menu .el-menu-item,
   .main-menu .el-sub-menu__title {
-    font-size: 13px;
-    padding: 0 8px !important;
+    color: white !important;
+    font-size: 16px;
+    padding: 12px 20px !important;
+    margin: 0;
+    text-align: left;
+    width: 100%;
+  }
+
+  .main-menu .el-sub-menu .el-menu {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .search-box {
+    width: 100%;
+    margin-top: 10px;
   }
 }
 </style>
